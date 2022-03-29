@@ -9,6 +9,7 @@ const Context = ({ children }) => {
   const [category, setCategory] = useState("general");
   const [source, setSource] = useState();
   const [index, setIndex] = useState(1);
+  const [authData, setAuthData] = useState("");
   const [darkTheme, setDarkTheme] = useState(true);
 
   const fetchNews = async (reset = category) => {
@@ -46,6 +47,8 @@ const Context = ({ children }) => {
         darkTheme,
         setDarkTheme,
         fetchNews,
+        authData,
+        setAuthData,
       }}
     >
       {children}

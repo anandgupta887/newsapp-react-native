@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
-import { StatusBar, StyleSheet, View } from "react-native";
+import { StatusBar, StyleSheet, View, Text } from "react-native";
 import Context, { NewsContext } from "./API/Context";
 import InshortTabs from "./components/InshortTabs";
+import Login from "./components/Login";
 
 function App() {
-  const { darkTheme } = useContext(NewsContext);
+  const { darkTheme, authData } = useContext(NewsContext);
 
   return (
     <View
@@ -13,7 +14,7 @@ function App() {
         backgroundColor: darkTheme ? "#282C35" : "white",
       }}
     >
-      <InshortTabs />
+      {authData ? <InshortTabs /> : <Login />}
     </View>
   );
 }

@@ -25,6 +25,7 @@ const Search = () => {
   const handleSearch = (text) => {
     if (!text) {
       setSearchResults([]);
+      setModalVisible(false);
       return;
     }
     setSearchResults(articles.filter((query) => query.title.includes(text)));

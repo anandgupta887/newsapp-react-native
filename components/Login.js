@@ -17,17 +17,21 @@ const Login = () => {
   const { authData, setAuthData } = useContext(NewsContext);
   const handleLogin = async (email, password) => {
     // Alert.alert("hello", email, password);
-    try {
-      await auth
-        .signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-          // Signed in
-          const user = userCredential.user;
-          // ...
-          setAuthData(user);
-        });
-    } catch (error) {
-      Alert.alert(error.message);
+    if (!email || !password) {
+      Alert.alert("Please enter email & password");
+    } else {
+      try {
+        await auth
+          .signInWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            // ...
+            setAuthData(user);
+          });
+      } catch (error) {
+        Alert.alert(error.message);
+      }
     }
   };
 
@@ -65,6 +69,7 @@ const Login = () => {
         style={styles.button}
         onPress={() => handleLogin(email, password)}
         color="#841584"
+        disabled={!email && !password}
       >
         <Text style={{ color: "white", fontSize: 15, textAlign: "center" }}>
           Login
